@@ -10,12 +10,11 @@ pool:
   name: Default
 
 steps:
-- task: Maven@3
+- task: synopsys-coverity@1
   inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '21'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    goals: 'package'
+    coverityService: 'Coverity'
+    projectName: 'azure-sample'
+    streamName: 'azure-sample'
+    coverityBuildDirectory: '$(Build.Repository.LocalPath)'
+    buildCommand: 'mvn clean install'
+    allowUntrusted: true
