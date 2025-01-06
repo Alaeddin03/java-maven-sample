@@ -5,6 +5,11 @@ trigger:
 pool:
   name: Default
 
+- script: |
+      chmod +x manage_idir.sh
+      ./manage_idir.sh restore
+  displayName: 'Restore idir for Incremental Analysis' 
+
 steps:
 - task: synopsys-coverity@1
   inputs:
@@ -14,3 +19,7 @@ steps:
     coverityBuildDirectory: '$(Build.Repository.LocalPath)'
     buildCommand: 'mvn clean install'
     allowUntrusted: true
+
+- script: |
+      ./manage_idir.sh backup
+  displayName: 'Backup idir After Scan'
