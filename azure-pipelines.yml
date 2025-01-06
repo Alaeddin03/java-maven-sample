@@ -5,10 +5,7 @@ trigger:
 pool:
   name: Default
 
-steps:
-- task: DownloadPipelineArtifact@2
-  inputs:
-    artifactName: 'idir'                 
+steps:           
 - task: DownloadPipelineArtifact@2
   continueOnError: true
   inputs:
@@ -25,7 +22,6 @@ steps:
       echo "Artifact 'idir' not found. Skipping dependent steps."
     fi
   displayName: 'Extract idir if it exists'
-  condition: always()
 
 - task: synopsys-coverity@1
   inputs:
