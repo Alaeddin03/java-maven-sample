@@ -12,8 +12,6 @@ steps:
     buildType: 'specific'
     project: 'e299d603-e81a-46ba-92bd-f4ed1a9bccc6'
     definition: '1'
-    buildVersionToDownload: 'latestFromBranch'
-    branchName: 'refs/heads/azure-pipelines-artifacts'
     artifactName: 'idir'
     targetPath: '.'
 
