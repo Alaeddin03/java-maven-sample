@@ -29,9 +29,7 @@ steps:
     cd $(COVERITY_TOOL_HOME)/bin && ./coverity scan --dir $(IDIR_PATH)/$(IDIR_FILE_NAME)\
         -o commit.connect.url=$CONNECT_URL \
         -o commit.connect.project=azure-sample \
-        -o commit.connect.stream=azure-sample-artifact \
-        -o coverity.connect.user.name=$(COV_USER) \
-        -o coverity.connect.user.password=$(COVERITY_CLI_CONNECT_PASSWORD)
+        -o commit.connect.stream=azure-sample-artifact
   displayName: Coverity Scan
 
 - publish: $(IDIR_PATH)/$(IDIR_FILE_NAME)
