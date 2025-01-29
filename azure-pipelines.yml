@@ -17,4 +17,7 @@ steps:
     allowUntrusted: true
   displayName: 'Coverity Scan'
 
+- publish: $(IDIR_PATH)
+  artifact: azure-sample-artifact
+
 
