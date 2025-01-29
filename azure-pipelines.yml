@@ -7,6 +7,10 @@ pool:
 
 steps:           
 
+- download: none
+  artifact: azure-sample-artifact
+  continueOnError: true
+  
 - task: synopsys-coverity@1
   inputs:
     coverityService: 'Coverity'
