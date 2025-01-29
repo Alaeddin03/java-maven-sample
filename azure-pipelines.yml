@@ -5,25 +5,7 @@ trigger:
 pool:
   name: Default
 
-resources:
-  pipelines:
-      - pipeline: 1
-        source: Alaeddin03.java-maven-sample
-
 steps:           
-- download: 1
-  artifact: $(IDIR_FILE_NAME)
-  continueOnError: true
-  
-- script: |
-    if [ -d "$(IDIR_PATH)/$(IDIR_FILE_NAME)" ] && [ -z "$(ls -A $(IDIR_PATH)/$(IDIR_FILE_NAME))" ]; then
-      echo "idir folder is empty. Removing..."
-      rmdir $(IDIR_PATH)/$(IDIR_FILE_NAME)
-    else
-      echo "idir folder is not empty. Keeping it."
-    fi
-  displayName: Remove idir folder if empty
-
 - script: |
     $(COVERITY_TOOL_HOME)/bin/coverity scan --dir $(IDIR_PATH)/$(IDIR_FILE_NAME)\
         -o commit.connect.url=$CONNECT_URL \
@@ -34,5 +16,6 @@ steps:
 
 - publish: $(IDIR_PATH)/$(IDIR_FILE_NAME)
   artifact: azure-sample-artifact
+
 
 
