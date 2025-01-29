@@ -27,12 +27,11 @@ steps:
   displayName: 'Coverity Scan'
 
 - script: |
-    .$(COVERITY_TOOL_HOME)/bin/coverity scan \
-        --dir $(IDIR_PATH)/$(IDIR_FILE_NAME)
+    .$(COVERITY_TOOL_HOME)/bin/coverity scan --dir $(IDIR_PATH)/$(IDIR_FILE_NAME)\
         -o commit.connect.url=$CONNECT_URL \
         -o commit.connect.project=azure-sample \
         -o commit.connect.stream=azure-sample-artifact
-  displayName: Coverit Scan
+  displayName: Coverity Scan
 
   
 
