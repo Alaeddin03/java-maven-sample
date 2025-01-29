@@ -16,14 +16,16 @@ steps:
   artifact: $(IDIR_FILE_NAME)
   continueOnError: true
 
+- script: rmdir $(IDIR_PATH)/$(IDIR_FILE_NAME)
+  condition: failed()
+  displayName: Remove idir folder if empty
+
 - script: |
     cd $(COVERITY_TOOL_HOME)/bin && ./coverity scan --dir $(IDIR_PATH)/$(IDIR_FILE_NAME)\
         -o commit.connect.url=$CONNECT_URL \
         -o commit.connect.project=azure-sample \
         -o commit.connect.stream=azure-sample-artifact
   displayName: Coverity Scan
-
-  
 
 - publish: $(IDIR_PATH)/$(IDIR_FILE_NAME)
   artifact: azure-sample-artifact
