@@ -15,16 +15,6 @@ steps:
 - download: 1
   artifact: $(IDIR_FILE_NAME)
   continueOnError: true
-  
-- task: synopsys-coverity@1
-  inputs:
-    coverityService: 'Coverity'
-    projectName: 'azure-sample'
-    streamName: 'azure-sample-artifact'
-    coverityBuildDirectory: '$(Build.Repository.LocalPath)'
-    buildCommand: 'mvn clean install'
-    allowUntrusted: true
-  displayName: 'Coverity Scan'
 
 - script: |
     .$(COVERITY_TOOL_HOME)/bin/coverity scan --dir $(IDIR_PATH)/$(IDIR_FILE_NAME)\
