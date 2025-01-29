@@ -13,7 +13,7 @@ resources:
 steps:           
 
 - download: 1
-  artifact: azure-sample-artifact
+  artifact: $(IDIR_FILE_NAME)
   continueOnError: true
   
 - task: synopsys-coverity@1
@@ -26,7 +26,16 @@ steps:
     allowUntrusted: true
   displayName: 'Coverity Scan'
 
-- publish: $(IDIR_PATH)
+- script: |
+    .$(COVERITY_TOOL_HOME)/bin/coverity scan \
+        -o commit.connect.url=$CONNECT_URL \
+        -o commit.connect.project=azure-sample \
+        -o commit.connect.stream=azure-sample-artifact \
+        --dir $(IDIR_PATH)/$(IDIR_FILE_NAME)
+
+  
+
+- publish: $(IDIR_PATH)/$(IDIR_FILE_NAME)
   artifact: azure-sample-artifact
 
 
