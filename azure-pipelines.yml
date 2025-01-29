@@ -5,9 +5,14 @@ trigger:
 pool:
   name: Default
 
+resources:
+  pipelines:
+      - pipeline: 1
+        source: Alaeddin03.java-maven-sample
+
 steps:           
 
-- download: none
+- download: 1
   artifact: azure-sample-artifact
   continueOnError: true
   
