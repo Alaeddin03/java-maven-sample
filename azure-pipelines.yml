@@ -1,6 +1,6 @@
 
 trigger:
-- azure-pipelines
+- azure-pipelines-artifact
 
 pool:
   name: Default
