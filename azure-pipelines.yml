@@ -1,0 +1,25 @@
+
+trigger:
+- azure-pipelines
+
+pool:
+  name: Default
+
+steps:
+- script: |
+      chmod +x manage_idir.sh
+      ./manage_idir.sh restore
+  displayName: 'Restore idir for Incremental Analysis' 
+
+- task: synopsys-coverity@1
+  inputs:
+    coverityService: 'Coverity'
+    projectName: 'azure-sample'
+    streamName: 'azure-sample'
+    coverityBuildDirectory: '$(Build.Repository.LocalPath)'
+    buildCommand: 'mvn clean install'
+    allowUntrusted: true
+
+- script: |
+      ./manage_idir.sh backup
+  displayName: 'Backup idir After Scan'

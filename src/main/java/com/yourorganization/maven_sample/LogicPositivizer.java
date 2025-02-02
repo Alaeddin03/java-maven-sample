@@ -17,6 +17,13 @@ import java.nio.file.Paths;
  */
 public class LogicPositivizer {
     public static void main(String[] args) {
+
+        String apiKey = "12345-SECRET-API-KEY";
+        System.out.println("Using API Key: " + apiKey);
+
+        String nullString = null;
+        System.out.println("String length is: " + nullString.length());
+
         // JavaParser has a minimal logging class that normally logs nothing.
         // Let's ask it to write to standard out:
         Log.setAdapter(new Log.StandardOutStandardErrorAdapter());
